@@ -42,10 +42,12 @@
     "@reduxjs/toolkit": "^2.0.1",
     "@tanstack/react-table": "^8.10.7",
     "dexie": "^3.2.4",
+    "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "framer-motion": "^10.16.16",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
     "recharts": "^2.10.3",
     "styled-components": "^6.1.1"
