@@ -6,6 +6,7 @@ import { useAppDispatch } from "@shared";
 import { ControlsProps } from "./Controls.types";
 import * as S from "./Controls.styled";
 import { UserTokensOperationsDrawerProps } from "@widgets/UserTokensOperationsDrawer/UserTokensOperationsDrawer.types";
+import { removeUser } from "@entities";
 
 export const Controls: FC<ControlsProps> = ({ userId }) => {
   const dispatch = useAppDispatch();
@@ -18,12 +19,18 @@ export const Controls: FC<ControlsProps> = ({ userId }) => {
     );
   };
 
+  const deleteUser = () => {
+    dispatch(removeUser(userId));
+  };
+
   return (
     <S.StyledControls>
       <span onClick={openUserDrawer}>
         <EditIcon />
       </span>
-      <TrashIcon />
+      <span onClick={deleteUser}>
+        <TrashIcon />
+      </span>
     </S.StyledControls>
   );
 };

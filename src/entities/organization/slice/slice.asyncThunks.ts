@@ -12,7 +12,7 @@ export const fetchOrgUsers = createAsyncThunk(
 
     if (direction === "desc") limitedUsers = limitedUsers.reverse();
     if (query)
-      limitedUsers = limitedUsers.filter((u) => u.name.indexOf(query) >= 0);
+      limitedUsers = limitedUsers.filter((u) => u.email.indexOf(query) >= 0);
 
     const users: User[] = [];
     let allSorted: User[];
@@ -35,5 +35,18 @@ export const fetchOrgUsers = createAsyncThunk(
       users,
       usersCount,
     };
+  },
+);
+
+export const removeUser = createAsyncThunk(
+  "organization/removeUser",
+  async (userId: number) => {
+    const userContext = db.users.where("id").equals(userId);
+    const candidate = await userContext.first();
+
+    if (!candidate) throw new Error(`User with this id not exists: ${userId}`);
+    await userContext.delete();
+
+    return userId;
   },
 );

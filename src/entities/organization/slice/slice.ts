@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SortDirection, User } from "@shared";
 import { initialState } from "./slice.constant";
-import { fetchOrgUsers } from "./slice.asyncThunks";
+import { fetchOrgUsers, removeUser } from "./slice.asyncThunks";
 import { OrganizationUsersOrderBy } from "./slice.types";
 
 const organizationSlice = createSlice({
@@ -40,6 +40,14 @@ const organizationSlice = createSlice({
     builder.addCase(fetchOrgUsers.rejected, (state) => {
       state.users = [];
     });
+
+    builder.addCase(
+      removeUser.fulfilled,
+      (state, action: PayloadAction<number>) => {
+        state.usersCount -= 1;
+        state.users = state.users.filter((u) => u.id !== action.payload);
+      },
+    );
   },
 });
 
