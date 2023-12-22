@@ -6,7 +6,7 @@ import * as S from "./SearchOrgUsers.styled";
 
 export const SearchOrgUsers = () => {
   const [search, setSearch] = useState("");
-  const debouncedSearch = useDebounce(search, 300);
+  const debouncedSearch = useDebounce(search, 100);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

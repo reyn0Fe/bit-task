@@ -12,7 +12,7 @@ export const Pagination: FC<PaginationProps> = ({
   count,
 }) => {
   const [activePage, setActivePage] = useState(1);
-  const debouncedActivePage = useDebounce(activePage, 250);
+  const debouncedActivePage = useDebounce(activePage, 100);
   const pagesCount = Math.ceil(count / perPage);
   const buttons = getPaginationButtons(activePage, pagesCount);
 
